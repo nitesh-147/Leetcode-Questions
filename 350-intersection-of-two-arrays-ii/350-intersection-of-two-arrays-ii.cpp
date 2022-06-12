@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        int a=0,b=0;
+        vector<int>ans;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        while(a<nums1.size()&&b<nums2.size()){
+            if(nums1[a]==nums2[b]){
+                ans.push_back(nums1[a]);
+                a++;
+                b++;
+            }
+            else if(nums1[a]<nums2[b]){
+                a++;
+            }
+            else
+                b++;
+        }
+        return ans;
+    }
+};
