@@ -16,12 +16,11 @@ public:
         if(cloned->val==target->val)
             return cloned;
         
-        if(cloned==NULL)
-            return NULL;
+        
         
         TreeNode* l=getTargetCopy(original,cloned->left,target);
         TreeNode* r=getTargetCopy(original,cloned->right,target);
-        if(l==nullptr)
+        if(r)
         return r;
         else
             return l;
