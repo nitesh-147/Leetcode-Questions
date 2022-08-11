@@ -1,17 +1,16 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        map<int,int> m,n;
-        
+       if(s.size()!=t.size())
+           return false;
+        unordered_map<char,char> m,n;
         for(int i=0;i<s.size();i++){
-            if(m[(int)t[i]]==0 && n[(int)s[i]]==0){
-                m[(int)t[i]]=(int)s[i];
-                n[(int)s[i]]=(int)t[i];
-            }
-            else{
-                if(m[(int)t[i]]!=(int)s[i] || n[(int)s[i]]!=(int)t[i]  )
-                    return false;
-            }
+            m[s[i]]=t[i];
+            n[t[i]]=s[i];
+        }
+         for(int i=0;i<s.size();i++){
+            if(m[s[i]]!=t[i] || n[t[i]]!=s[i])
+                return false;
         }
         return true;
     }
