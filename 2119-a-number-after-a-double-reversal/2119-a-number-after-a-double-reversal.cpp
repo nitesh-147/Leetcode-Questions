@@ -17,7 +17,9 @@ public:
         // if(num==reverse(num))
         //     return true;
         // return false;
-    if(num!=0 && num%10==0)
+        if(num==0)
+            return true;
+    if(num%10==0)
         return false;
     return true;
     }
