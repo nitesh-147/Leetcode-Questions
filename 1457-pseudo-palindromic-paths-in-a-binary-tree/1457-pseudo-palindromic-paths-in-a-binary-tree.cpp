@@ -20,8 +20,10 @@ public:
             for(auto i:m){
                 if(i%2!=0)
                     oc++;
+                if(oc>1)
+                    return;
             }
-            if(oc<2)
+            // if(oc<2)
                 ans++;
         }
         
