@@ -9,9 +9,10 @@ public:
         }
         vector<int> ans;
            while(sum1<=sum){
-               sum1+=p.top();
-               sum-=p.top();
-               ans.push_back(p.top());
+               int a=p.top();
+               sum1+=a;
+               sum-=a;
+               ans.push_back(a);
                
                p.pop();
            }
