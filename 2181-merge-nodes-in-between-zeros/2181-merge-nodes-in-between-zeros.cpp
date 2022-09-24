@@ -15,11 +15,11 @@ public:
         ListNode* h=ans;
         int sum=0;
         while(head!=NULL){
-            if(head->val==0){
-                if(sum!=0){
+            if(head->val==0&&sum!=0){
+                
                     ans->next=new ListNode(sum);
                     ans=ans->next;
-                }
+                
                 sum=0;
                     
             }
