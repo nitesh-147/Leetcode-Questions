@@ -14,7 +14,7 @@ public:
         for(int i=0;i<s.size();i++){
             int foc=f[s[i]];
             int loc=l[s[i]];
-            for(int j=foc;j<=loc;j++){
+            for(int j=foc+1;j<loc;j++){
                 loc=max(loc,l[s[j]]);
             }
             ans.push_back(loc-foc+1);
