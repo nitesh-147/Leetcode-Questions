@@ -1,9 +1,6 @@
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        // unordered_map<char,int> l;
-        // for(int i=0;i<s.size();i++)
-        //     l[s[i]]=i;
        
         
         int loc=0;
