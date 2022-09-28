@@ -6,7 +6,7 @@ public:
     int firstBadVersion(int n) {
         int a=1;
         int b=n;
-        int ans=1;
+        // int ans=1;
         while(a<=b){
              int x=a+(b-a)/2;
             if(isBadVersion(x))
