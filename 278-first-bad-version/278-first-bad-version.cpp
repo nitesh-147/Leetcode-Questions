@@ -12,11 +12,11 @@ public:
             if(isBadVersion(x))
             {
                 b=x-1;
-                ans=x;
+                // ans=x;
             }
             else
                 a=x+1;
         }
-        return ans;
+        return (isBadVersion(a))? a:a+1;
     }
 };
