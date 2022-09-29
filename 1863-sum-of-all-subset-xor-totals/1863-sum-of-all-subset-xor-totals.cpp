@@ -3,10 +3,12 @@ public:
     int subsetXORSum(vector<int>& nums) {
        int n=pow(2,nums.size());
         int ans=0;
+        int xr,x,p;
+        
         for(int i=0;i<n;i++){
-            int xr=0;
-            int p=0;
-            int x=i;
+            xr=0;
+            p=0;
+            x=i;
             while(x>0){
                 if(x&1)
                     xr^=nums[p];
