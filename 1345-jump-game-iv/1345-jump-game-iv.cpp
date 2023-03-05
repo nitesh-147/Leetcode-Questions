@@ -5,7 +5,7 @@ public:
         if(arr.size()==1) return 0;
         
         unordered_map<int,vector<int>> m;
-        unordered_map<int,bool> m1;
+        // unordered_map<int,bool> m1;
         int n=arr.size();
         
         for(int i=0;i<n;i++){
@@ -34,15 +34,15 @@ public:
                 q.push({x+1,step+1});
             } 
         
-            if(m1[arr[x]]==false){
+    
                 for(auto i:m[arr[x]]){
                 if(!vis[i]){
                     vis[i]=true;
                     q.push({i,step+1});
                    }
                 }
-                m1[arr[x]]=true;
-            }
+                // m1[arr[x]]=true;
+               m.erase(arr[x]);
             
         }
         
