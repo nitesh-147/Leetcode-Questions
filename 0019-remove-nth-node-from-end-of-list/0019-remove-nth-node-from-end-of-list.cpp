@@ -10,29 +10,18 @@
  */
 class Solution {
 public:
-    void helper(ListNode* &head, int &n){
-        
-        if(head==NULL){
-            return;
-        }
-        
-        helper(head->next,n);
-        n--;
-        if(n==0){
-            if(head->next==NULL){
-                head=head->next;
-            }
-            else{
-                ListNode* temp=head->next;
-                head->val=temp->val;
-                head->next=temp->next;
-                delete(temp);
-            }
-        }
-        
-    }
+   
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        helper(head,n);
+       ListNode* slow=head, *fast=head;
+       while(n--) fast=fast->next;
+       if(fast==0) return head->next;
+        
+        while(fast->next!=0){
+            slow=slow->next;
+            fast=fast->next;
+        }
+        
+        slow->next=slow->next->next;
         return head;
     }
 };
