@@ -28,9 +28,9 @@ public:
         mp[cur]=clone;
             for(auto it:cur->neighbors)
             {
-                if(mp.find(it)!=mp.end())   //already clone and stored in map
+                if(mp.find(it)!=mp.end()) 
                 {
-                    neighbour.push_back(mp[it]);    //directly push back the clone node from map to neigh
+                    neighbour.push_back(mp[it]);  
                 }
                 else
                     neighbour.push_back(dfs(it,mp));
@@ -42,7 +42,7 @@ public:
         unordered_map<Node*,Node*> mp;
         if(node==NULL)
             return NULL;
-        if(node->neighbors.size()==0)   //if only one node present no neighbors
+        if(node->neighbors.size()==0) 
         {
             Node* clone= new Node(node->val);
             return clone; 
