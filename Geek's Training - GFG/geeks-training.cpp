@@ -6,29 +6,31 @@ using namespace std;
 class Solution {
     private:
     vector<vector<int>> dp;
-    int helper(vector<vector<int>>& points, int n){
-        dp[0]=points[0];
-        for(int i=1;i<=n;i++){
-            for(int j=0;j<3;j++){
-                for(int k=0;k<3;k++){
-                    if(j!=k){
-                        dp[i][j]=max(dp[i][j],dp[i-1][k]);
-                    }
-                }
-                dp[i][j]+=points[i][j];
-            }
-        }
-        int ans=-1;
-        for(int i=0;i<3;i++){
-            ans=max(ans,dp[n][i]);
-        }
-        return ans;
+    int helper(vector<vector<int>>& points,int day,int last){
+       if(dp[day][last]!=-1) return dp[day][last];
+       if(day==0){
+           int maxi=0;
+           for(int i=0;i<=2;i++){
+               if(i!=last){
+                   maxi=max(maxi,points[0][i]);
+               }
+           }
+           return dp[day][last]=maxi;
+       }
+       
+       int maxi=0;
+       for(int i=0;i<3;i++){
+           if(i!=last){
+               maxi=max(maxi,points[day][i]+helper(points,day-1,i));
+           }
+       }
+       return dp[day][last]=maxi;
     }
   public:
     int maximumPoints(vector<vector<int>>& points, int n) {
         // Code here
-        dp.resize(n,vector<int>(3,INT_MIN));
-        return helper(points,n-1);
+        dp.resize(n,vector<int>(4,-1));
+        return helper(points,n-1,3);
     }
 };
 
