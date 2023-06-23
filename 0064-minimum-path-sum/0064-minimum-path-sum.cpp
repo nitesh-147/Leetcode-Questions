@@ -1,18 +1,20 @@
 class Solution {
 public:
-    int helper(int x,int y,int m,int n,vector<vector<int>>& grid,vector<vector<int>>& dp){
-        if(x<0 || x>=m || y<0 || y>=n) return INT_MAX;
-        if(x==m-1 && y==n-1) return grid[x][y];
+    int helper(int m,int n,vector<vector<int>>& grid,vector<vector<int>>& dp){
+        if(m==0 && n==0) return grid[0][0];
+        if(m<0 || n<0) return INT_MAX;
         
-        int &ans=dp[x][y];
+        int &ans=dp[m][n];
         if(ans!=-1) return ans;
-        ans=min(helper(x,y+1,m,n,grid,dp),helper(x+1,y,m,n,grid,dp))+grid[x][y];
-        return ans;
+        
+        ans=min(helper(m-1,n,grid,dp),helper(m,n-1,grid,dp));
+        ans+=grid[m][n];
+        
+        return ans;  
     }
     int minPathSum(vector<vector<int>>& grid) {
         int m=grid.size(),n=grid[0].size();
         vector<vector<int>> dp(m,vector<int>(n,-1));
-        
-        return helper(0,0,m,n,grid,dp);
+        return helper(m-1,n-1,grid,dp);
     }
 };
