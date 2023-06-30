@@ -1,24 +1,24 @@
 class Solution {
 public:
-    int helper(int i,int j,int m,int n,int len,vector<vector<int>>& matrix){
-        if(i+len>m || j+len>n) return 0;
-        for(int x=i;x<i+len;x++){
-            for(int y=j;y<j+len;y++){
-                if(matrix[x][y]==0) return 0;
-            }
-        }
-        return 1;
-    }
     int countSquares(vector<vector<int>>& matrix) {
         int m=matrix.size(),n=matrix[0].size();
-        int ans=0;
-        for(int i=1;i<=min(m,n);i++){
-            for(int j=0;j<m;j++){
-                for(int k=0;k<n;k++){
-                    ans+=helper(j,k,m,n,i,matrix);
+        vector<vector<int>> dp(m,vector<int>(n,0));
+        
+        for(int i=0;i<m;i++) dp[i][0]=matrix[i][0];
+        for(int i=0;i<n;i++) dp[0][i]=matrix[0][i];
+        
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                if(matrix[i][j]==1){
+                    dp[i][j]=1+min(dp[i-1][j],min(dp[i][j-1],dp[i-1][j-1]));
                 }
             }
-            cout<<ans<<" ";
+        }
+        int ans=0;
+        for(auto i:dp){
+            for(auto j:i){
+                ans+=j;
+            }
         }
         return ans;
     }
