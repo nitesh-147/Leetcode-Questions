@@ -20,13 +20,13 @@ public:
                 v.push_back(matrix[down][i]);
             }
             down--;
-            if(down<top) break;
+            // if(down<top) break;
 
             for(int i=down;i>=top;i--){
                 v.push_back(matrix[i][left]);
             }
             left++;
-            if(left>right) break;
+            // if(left>right) break;
         }
         return v;
     }
