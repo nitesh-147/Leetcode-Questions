@@ -8,27 +8,91 @@ using namespace std;
 // } Driver Code Ends
 // User function template for C++
 
+
+
+// } Driver Code Ends
+// User function template for C++
+
 class Solution{
-    public:
-    void helper(int i,int j,vector<vector<int>> &m,int n,string temp,vector<string> &ans,vector<vector<int>> vis){
-        if(i<0 || j<0 || i>=n || j>=n || vis[i][j] || !m[i][j]) return;
-        if(i==n-1 && j==n-1){
-            ans.push_back(temp);
+    private:
+    bool is_safe(vector<vector<int>>& m,int n,vector<vector<int>>visited,int x,int y){
+        if((x>=0 &&x<n)&&(y>=0&&y<n)&&m[x][y]==1&&visited[x][y]==0){
+            return true;
         }
-        vis[i][j]=1;
-        helper(i,j+1,m,n,temp+'R',ans,vis);
-        helper(i+1,j,m,n,temp+'D',ans,vis);
-        helper(i,j-1,m,n,temp+'L',ans,vis);
-        helper(i-1,j,m,n,temp+'U',ans,vis);
+        else 
+        return false;
     }
-    vector<string> findPath(vector<vector<int>> &m, int n) {
-        vector<string> ans;
-        string temp;
-        vector<vector<int>> vis(n,vector<int>(n,0));
-        helper(0,0,m,n,temp,ans,vis);
-        return ans;
+    void solve(vector<vector<int>>&m,int n,vector<string>&ans,vector<vector<int>>visited, string path,int x,int y){
+        if(x==n-1 && y==n-1){
+            // cout<<"NKR";
+            ans.push_back(path);
+            return;
+        }
+        visited[x][y]=1;
+        //down
+       int  newx=x+1;
+        int newy=y;
+        if (is_safe(m,n,visited,newx,newy)){
+            // path.push_back('D');
+            solve(m,n,ans,visited,path+'D',newx,newy);
+            // path.pop_back();
+        }
+          //up
+         newx=x-1;
+         newy=y;
+        if (is_safe(m,n,visited,newx,newy)){
+            // path.push_back('U');
+            solve(m,n,ans,visited,path+'U',newx,newy);
+            // path.pop_back();
+        }
+          //right
+        newx=x;
+         newy=y+1;
+        if (is_safe(m,n,visited,newx,newy)){
+            // path.push_back('R');
+            solve(m,n,ans,visited,path+'R',newx,newy);
+            // path.pop_back();
+        }
+          //left
+         newx=x;
+         newy=y-1;
+        if (is_safe(m,n,visited,newx,newy)){
+            // path.push_back('L');
+            solve(m,n,ans,visited,path+'L',newx,newy);
+            // path.pop_back();
+        }
+        
+        
+        
+        visited[x][y]=0;
+    }
+    public:
+        vector<string> findPath(vector<vector<int>> &m, int n) {
+        
+        // Your code goes here
+         vector<string>ans;
+        if(m[0][0]==0){
+            return ans;
+        }
+       
+        int srcx=0;
+        int srcy=0;
+        vector<vector<int>>visited=m;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                visited[i][j]=0;
+            }
+                    }
+                    string path="";
+                    solve(m,n,ans,visited,path,srcx,srcy);
+                    sort(ans.begin(),ans.end());
+                    return ans;
     }
 };
+
+    
+
+
 
     
 
