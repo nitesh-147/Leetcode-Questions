@@ -33,33 +33,33 @@ class Solution{
        int  newx=x+1;
         int newy=y;
         if (is_safe(m,n,visited,newx,newy)){
-            // path.push_back('D');
-            solve(m,n,ans,visited,path+'D',newx,newy);
-            // path.pop_back();
+            path.push_back('D');
+            solve(m,n,ans,visited,path,newx,newy);
+            path.pop_back();
         }
           //up
          newx=x-1;
          newy=y;
         if (is_safe(m,n,visited,newx,newy)){
-            // path.push_back('U');
-            solve(m,n,ans,visited,path+'U',newx,newy);
-            // path.pop_back();
+            path.push_back('U');
+            solve(m,n,ans,visited,path,newx,newy);
+            path.pop_back();
         }
           //right
         newx=x;
          newy=y+1;
         if (is_safe(m,n,visited,newx,newy)){
-            // path.push_back('R');
-            solve(m,n,ans,visited,path+'R',newx,newy);
-            // path.pop_back();
+            path.push_back('R');
+            solve(m,n,ans,visited,path,newx,newy);
+            path.pop_back();
         }
           //left
          newx=x;
          newy=y-1;
         if (is_safe(m,n,visited,newx,newy)){
-            // path.push_back('L');
-            solve(m,n,ans,visited,path+'L',newx,newy);
-            // path.pop_back();
+            path.push_back('L');
+            solve(m,n,ans,visited,path,newx,newy);
+            path.pop_back();
         }
         
         
